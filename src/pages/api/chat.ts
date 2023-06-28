@@ -10,7 +10,7 @@ import {
 import { OpenAIStream, StreamingTextResponse } from "ai";
 
 export const config = {
-  runtime: "experimental-edge",
+  runtime: "edge",
 };
 
 const apiConfig = new Configuration({
@@ -31,7 +31,10 @@ export default async function AIChatStream(req: NextRequest) {
     console.log("Request: ", reqJSON);
 
     // eslint-disable-next-line @typescript-eslint/await-thenable
-    const messages = reqJSON.messages;
+    const messages = reqJSON.messages.map((message) => ({
+      ...message,
+      content: message.content + " Please format the response as markdown.",
+    }));
     console.log("Messages: ", messages);
 
     if (!messages) {
