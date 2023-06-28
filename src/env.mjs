@@ -10,9 +10,9 @@ export const env = createEnv({
     DATABASE_URL: z.string().url(),
     NODE_ENV: z.enum(["development", "test", "production"]),
     // Add `.min(1) on ID and SECRET if you want to make sure they're not empty
-    // Clerk Auth Keys
-    NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY: z.string().min(1),
+    // Clerk Auth Secret Key
     CLERK_SECRET_KEY: z.string().min(1),
+    // OpenAI API Key
     OPENAI_API_KEY: z.string().min(1),
   },
 
@@ -23,6 +23,8 @@ export const env = createEnv({
    */
   client: {
     // NEXT_PUBLIC_CLIENTVAR: z.string().min(1),
+    // Clerk Auth Publishable Key
+    NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY: z.string().min(1),
   },
 
   /**
